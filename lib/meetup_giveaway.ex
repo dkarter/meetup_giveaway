@@ -1,26 +1,32 @@
 defmodule MeetupGiveaway do
+  use Hound.Helpers
+
   @doc """
-  Returns a random attendee from a json file structured as
+  Returns a random attendee from an event url on meetup.com
 
-  ```json
-  {
-    "attendees": ["Name 1", "Name 2" ...]
-  }
-  ```
+  Usage:
 
-  To generate an array of meetup attendees navigate to
-  the event page, open browser dev tools and run the
-  following code:
-
-  ```javascript
-  $('.member-name a.unlink').toArray().map(x => x.text)
-  ```
+    ```elixir
+    iex> MeetupGiveaway.pick_random_attendee("https://www.meetup.com/ChicagoElixir/events/241965932/")
+    And the winner is :: "Some Name"
+    ```
   """
-  def pick_random_attendee do
-    "attendees.json"
-    |> File.read!()
-    |> Poison.decode!()
-    |> Map.fetch!("attendees")
+  def pick_random_attendee(event_url) do
+    scrape_attendees(event_url)
     |> Enum.random()
+    |> IO.inspect(label: 'And the winner is:')
+  end
+
+  defp scrape_attendees(event_url) do
+    Hound.start_session
+
+    navigate_to(event_url)
+    attendees =
+      Hound.Helpers.Page.find_all_elements(:css, ".member-name a.unlink")
+      |> Enum.map(&Hound.Helpers.Element.inner_text/1)
+
+    Hound.end_session
+
+    attendees
   end
 end

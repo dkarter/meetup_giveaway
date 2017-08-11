@@ -1,32 +1,16 @@
 # MeetupGiveaway
 
-Returns a random attendee from a JSON file structured as
+Returns a random attendee from an event url on meetup.com
 
-```json
-{
-  "attendees": ["Name 1", "Name 2"]
-}
-```
+Usage:
 
-To generate an array of meetup attendees navigate to
-the event page, open browser dev tools and run the
-following code:
-
-```js
-$('.member-name a.unlink').toArray().map(x => x.text)
-```
-
+  ```elixir
+  iex> MeetupGiveaway.pick_random_attendee("https://www.meetup.com/ChicagoElixir/events/241965932/")
+  # => And the winner is :: "Some Name"
+  ```
 
 ## Running
 
-Open the project in `iex`:
-
 ```bash
-iex -S mix
-```
-
-Then run the following command:
-
-```elixir
-MeetupGiveaway.pick_random_attendee
+mix run -e 'MeetupGiveaway.pick_random_attendee("https://www.meetup.com/ChicagoElixir/events/241965932/")'
 ```

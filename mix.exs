@@ -14,16 +14,15 @@ defmodule MeetupGiveaway.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :hound]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      # {:httpoison, "~> 0.13.0"},
-      # {:floki, "~> 0.18.0"}
-      {:poison, "~> 3.1"}
+      {:hound, "~> 1.0"},
+      {:poison, "~> 3.1"},
     ]
   end
 end
