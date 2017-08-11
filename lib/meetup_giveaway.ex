@@ -6,10 +6,8 @@ defmodule MeetupGiveaway do
 
   Usage:
 
-    ```elixir
-    iex> MeetupGiveaway.pick_random_attendee("https://www.meetup.com/ChicagoElixir/events/241965932/")
-    And the winner is :: "Some Name"
-    ```
+    iex> MeetupGiveaway.pick_random_attendee("https://www.meetup.com/Chicago-Fun-Volunteers/events/242193136/")
+    "Frankye P."
   """
   def pick_random_attendee(event_url) do
     scrape_attendees(event_url)
