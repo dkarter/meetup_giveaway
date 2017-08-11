@@ -14,3 +14,8 @@ Usage:
 ```bash
 mix run -e 'MeetupGiveaway.pick_random_attendee("https://www.meetup.com/ChicagoElixir/events/241965932/")'
 ```
+
+
+## Requirements
+
+- PhantomJS (`yarn global install phantomjs && phantomjs --wd`)
