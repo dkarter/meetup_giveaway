@@ -18,4 +18,4 @@ mix run -e 'MeetupGiveaway.pick_random_attendee("https://www.meetup.com/ChicagoE
 
 ## Requirements
 
-- PhantomJS (`yarn global install phantomjs && phantomjs --wd`)
+- PhantomJS (`yarn global add phantomjs && phantomjs --wd`)
