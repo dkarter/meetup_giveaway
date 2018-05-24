@@ -16,14 +16,15 @@ defmodule MeetupGiveaway do
   end
 
   defp scrape_attendees(event_url) do
-    Hound.start_session
+    Hound.start_session()
 
-    navigate_to(event_url)
+    navigate_to("#{event_url}attendees/")
+
     attendees =
-      Hound.Helpers.Page.find_all_elements(:css, ".member-name a.unlink")
+      Hound.Helpers.Page.find_all_elements(:css, ".attendee-item h4")
       |> Enum.map(&Hound.Helpers.Element.inner_text/1)
 
-    Hound.end_session
+    Hound.end_session()
 
     attendees
   end
